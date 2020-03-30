@@ -92,7 +92,7 @@
       access_by_lua_block { validator.validate("GET") }
       types { }
       default_type text/plain;
-      add_header Content-MD5 <%= Digest::MD5.base64digest(::File.read(node['private_chef']['required_recipe']['path'])) %>;
+      add_header Content-MD5 <%= OpenSSL::Digest::MD5.base64digest(::File.read(node['private_chef']['required_recipe']['path'])) %>;
       alias <%= ::File.join(@dir, "html", "required_recipe") %>;
     <% else -%>
       # This endpoint is unique because it is defined via nginx and is not

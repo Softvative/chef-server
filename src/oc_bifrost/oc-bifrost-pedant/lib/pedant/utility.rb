@@ -22,7 +22,7 @@ module Pedant
     # This is equivalent to what Chef itself does internally for
     # checksumming cookbook files to go into a sandbox
     def self.checksum(file)
-      Digest::MD5.file(file).hexdigest
+      OpenSSL::Digest::MD5.file(file).hexdigest
     end
 
     def self.base64_checksum(checksum)
