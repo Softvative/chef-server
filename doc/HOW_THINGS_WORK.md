@@ -247,18 +247,11 @@ mode is currently only supported on RHEL systems.
 
 ### FIPS Implementation Details
 
-The erlang-crypto2 app provides `crypto` module implementation. To support
-switching to this crypto module at runtime we perform the following:
+The erlang crypto app provides `crypto` module implementation. We no longer
+use the erlang-crypto2 app that was used previously.
 
-* Build the erlang-crypto2 app as a separate omnibus definition using the same
-Erlang libraries used to build all other Erlang apps. Copy the `ebin` and `priv`
-folders from the build into a custom location inside the omnibus package.
-* If `fips true` is set and the server is reconfigured, we update the `vm.args`
-to put the erlang-crypto2 `ebin` folder at the front of the load path.
-* We also export the path to the `priv` folder as an environment variable. When
-the erlang-crypto2 app is loaded it uses an `on_load` function to load the
-crypto NIFs. We could not figure out how to specify the correct `priv` folder
-except by hardcoding it into this environment variable.
+* Setting `fips true` in `/etc/opscode/chef-server.rb` will enable
+  FIPS mode for Chef-Infra-Server.
 
 ## Api v0 and v1 functionality for users
 
