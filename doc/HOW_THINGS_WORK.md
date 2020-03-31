@@ -234,10 +234,8 @@ Chef Server into *FIPS mode* means:
 
 1. It sets `OPENSSL_FIPS=1` in the environment, so shelling out to `openssl`
 will activate the FIPS module.
-2. Using the erlang-crypto2 app it activates the FIPS module for any native
+2. Using the erlang crypto app it activates the FIPS module for any native
 calls.
-3. Also using the erlang-crypto2 app it overwrites certain crypto calls that are
-unsupported (IE, MD5) in the OpenSSL FIPS module with direct Erlang code.
 
 The server can be switched into and out of FIPS mode at runtime. Edit the
 `chef-server.rb` config by adding `fips true` or `fips false` to force FIPS
